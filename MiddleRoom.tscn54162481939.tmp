@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cj3s7cxucgui6"]
+
+[ext_resource type="Script" uid="uid://colxi87mcfuqa" path="res://MiddleRoom.gd" id="1_vigdv"]
+[ext_resource type="Resource" uid="uid://dnbkfygut60ds" path="res://Rooms.tres" id="2_xjuah"]
+
+[node name="MiddleRoom" type="Node3D" unique_id=1922921040 node_paths=PackedStringArray("endMarker")]
+script = ExtResource("1_vigdv")
+endMarker = NodePath("Marker3D")
+rooms = ExtResource("2_xjuah")
+metadata/_custom_type_script = "uid://colxi87mcfuqa"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=474252205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+use_collision = true
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=59760962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RoomsArray" format=3 uid="uid://dnbkfygut60ds"]
+
+[ext_resource type="Script" uid="uid://rox4sc3aao3l" path="res://Scripts/WorldGen/RoomResource.gd" id="1_3apah"]
+[ext_resource type="PackedScene" uid="uid://dh4y60ucs62yc" path="res://Scenes/EndRoom.tscn" id="1_eryer"]
+[ext_resource type="PackedScene" uid="uid://cj3s7cxucgui6" path="res://Scenes/MiddleRoom.tscn" id="2_0od82"]
+[ext_resource type="PackedScene" uid="uid://dsihh8ni0ejmd" path="res://Scenes/SideRoom.tscn" id="4_0od82"]
+[ext_resource type="PackedScene" uid="uid://cxp0nrc1n1wll" path="res://Scenes/StartRoom.tscn" id="4_411c8"]
+
+[resource]
+script = ExtResource("1_3apah")
+end = Array[PackedScene]([ExtResource("1_eryer")])
+side = Array[PackedScene]([ExtResource("4_0od82")])
+middle = Array[PackedScene]([ExtResource("2_0od82")])
+start = Array[PackedScene]([ExtResource("4_411c8")])
+metadata/_custom_type_script = "uid://rox4sc3aao3l"

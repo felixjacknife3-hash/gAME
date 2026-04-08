@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://depsp8cucs3ym"]
+
+[ext_resource type="Script" uid="uid://d1iw8bggc7hox" path="res://Scripts/RoomBuilder.gd" id="1_o7gqc"]
+[ext_resource type="PackedScene" uid="uid://dh8mqn43alreg" path="res://Scenes/Player.tscn" id="2_i75ym"]
+[ext_resource type="Resource" uid="uid://dnbkfygut60ds" path="res://Rooms.tres" id="2_v1uim"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v1uim"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_noarx"]
+sky_material = SubResource("ProceduralSkyMaterial_v1uim")
+
+[sub_resource type="Environment" id="Environment_jy0w5"]
+background_mode = 2
+sky = SubResource("Sky_noarx")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="RoomBuilder" type="Node3D" unique_id=1862079370]
+script = ExtResource("1_o7gqc")
+rooms = ExtResource("2_v1uim")
+metadata/_custom_type_script = "uid://d1iw8bggc7hox"
+
+[node name="Player" parent="." unique_id=318482038 instance=ExtResource("2_i75ym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=109805628]
+environment = SubResource("Environment_jy0w5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1145559627]
+transform = Transform3D(0.86602557, 0.43301278, -0.25000003, 0, 0.5, 0.8660256, 0.5000001, -0.7500001, 0.43301275, -0.1, 0, 0)
+shadow_enabled = true
+shadow_opacity = 0.3
+shadow_blur = 10.0
+directional_shadow_split_1 = 0.05

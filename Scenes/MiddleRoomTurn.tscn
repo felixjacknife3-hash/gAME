@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dky7krkohml0n"]
+
+[ext_resource type="Script" uid="uid://colxi87mcfuqa" path="res://Scripts/WorldGen/MiddleRoom.gd" id="1_bcvyr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bcvyr"]
+size = Vector3(1, 1, 2)
+
+[node name="MiddleRoomTurn" type="Node3D" unique_id=1878124281 node_paths=PackedStringArray("sideMarker", "endMarker", "area")]
+script = ExtResource("1_bcvyr")
+sideMarker = NodePath("Marker3D2")
+endMarker = NodePath("Marker3D")
+area = NodePath("Area3D")
+metadata/_custom_type_script = "uid://colxi87mcfuqa"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=474252205]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -1)
+use_collision = true
+size = Vector3(1, 1, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=295977891]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, -1.5)
+use_collision = true
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=59760962]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.5, 0, -1.5)
+
+[node name="Marker3D2" type="Marker3D" parent="." unique_id=881729352]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -3.5762787e-07, 0, -1.9999999)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=927600670]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=568427212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+shape = SubResource("BoxShape3D_bcvyr")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D" unique_id=1457098663]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.5, 0, -1.5)
+shape = SubResource("BoxShape3D_bcvyr")

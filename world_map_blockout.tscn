@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://d1gwxsycfc0bv"]
+
+[ext_resource type="Texture2D" uid="uid://bkehsgnq84m3s" path="res://Untitled.png" id="1_afsn0"]
+[ext_resource type="PackedScene" uid="uid://dh8mqn43alreg" path="res://Scenes/Player.tscn" id="2_atsv7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_afsn0"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_a202f"]
+sky_material = SubResource("ProceduralSkyMaterial_afsn0")
+
+[sub_resource type="Environment" id="Environment_atsv7"]
+background_mode = 2
+sky = SubResource("Sky_a202f")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World Map Blockout" type="Node3D" unique_id=2019873327]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=159173721]
+environment = SubResource("Environment_atsv7")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1666351030]
+use_collision = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D" unique_id=96920702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1000001, 0)
+radius = 31.6
+height = 53.4
+sides = 16
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="CSGCombiner3D" unique_id=984244094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90000004, 0)
+operation = 2
+inner_radius = 7.0
+outer_radius = 23.0
+sides = 16
+ring_sides = 16
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/CSGTorus3D2" unique_id=574018661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.425, 0)
+operation = 2
+radius = 19.7
+height = 2.8500009
+sides = 16
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGCombiner3D/CSGTorus3D2" unique_id=1232257406]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.1750007, 0)
+operation = 2
+radius = 25.0
+height = 2.8500009
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/CSGTorus3D2" unique_id=765881711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.000001, -0.10000056, -11.85)
+operation = 2
+size = Vector3(31.4, 15.8, 23.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1255285883]
+transform = Transform3D(2, 0, 0, 0, 1.2, 0, 0, 0, 1, 13.299999, -2.1999998, 0)
+texture = ExtResource("1_afsn0")
+
+[node name="Player" parent="." unique_id=318482038 instance=ExtResource("2_atsv7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1, -4.300001, 9.100002)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=676748796]
+transform = Transform3D(0.8660254, 0.43301272, -0.25, 0, 0.49999994, 0.8660255, 0.5, -0.75, 0.43301266, -0.1, 0, 0)
+shadow_enabled = true
+shadow_opacity = 0.3
+shadow_blur = 10.0
+directional_shadow_split_1 = 0.05

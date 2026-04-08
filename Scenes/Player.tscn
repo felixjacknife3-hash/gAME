@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dh8mqn43alreg"]
+
+[ext_resource type="Script" uid="uid://cavskolycx8b" path="res://Scripts/PlayerController.gd" id="1_kne1u"]
+[ext_resource type="Shader" uid="uid://boyxjw7dpmuww" path="res://quantise.gdshader" id="1_xhfnw"]
+[ext_resource type="Script" uid="uid://dt8uuv85o0h5n" path="res://Scripts/Head.gd" id="2_kpjcp"]
+[ext_resource type="Script" uid="uid://dtkntpe6np4jp" path="res://Scripts/Pause.gd" id="4_e80uo"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0rwas"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpjcp"]
+render_priority = 0
+shader = ExtResource("1_xhfnw")
+shader_parameter/levels = 14.00000057
+shader_parameter/colorAdjustment = Vector3(0.01, 0.02, 0.05)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xhfnw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kne1u"]
+
+[node name="Player" type="CharacterBody3D" unique_id=318482038]
+script = ExtResource("1_kne1u")
+metadata/_custom_type_script = "uid://cavskolycx8b"
+
+[node name="ScreenSpaceShaders" type="MeshInstance3D" parent="." unique_id=1380722225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_0rwas")
+surface_material_override/0 = SubResource("ShaderMaterial_kpjcp")
+
+[node name="Main" type="MeshInstance3D" parent="." unique_id=675483709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_xhfnw")
+
+[node name="HeadNode" type="Node3D" parent="." unique_id=947270392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+script = ExtResource("2_kpjcp")
+metadata/_custom_type_script = "uid://dt8uuv85o0h5n"
+
+[node name="Camera3D" type="Camera3D" parent="HeadNode" unique_id=548207774]
+current = true
+fov = 90.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=937860775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_kne1u")
+
+[node name="Pause" type="Node" parent="." unique_id=1352617494]
+process_mode = 3
+script = ExtResource("4_e80uo")
