@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://dh8mqn43alreg"]
 
 [ext_resource type="Script" uid="uid://cavskolycx8b" path="res://Scripts/PlayerController.gd" id="1_kne1u"]
+[ext_resource type="Script" uid="uid://c18v32kdfsytv" path="res://Scripts/player.gd" id="1_nn08x"]
 [ext_resource type="Shader" uid="uid://boyxjw7dpmuww" path="res://quantise.gdshader" id="1_xhfnw"]
 [ext_resource type="Script" uid="uid://dt8uuv85o0h5n" path="res://Scripts/Head.gd" id="2_kpjcp"]
 [ext_resource type="Script" uid="uid://dtkntpe6np4jp" path="res://Scripts/Pause.gd" id="4_e80uo"]
+[ext_resource type="Script" uid="uid://b783m6ebnmfie" path="res://Scripts/Components/ShootComponent.gd" id="5_nn08x"]
+[ext_resource type="Script" uid="uid://stgran0bamdt" path="res://Scripts/Components/GravityComponent.gd" id="6_52ee3"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_0rwas"]
 size = Vector2(2, 2)
@@ -16,11 +19,12 @@ shader_parameter/colorAdjustment = Vector3(0.01, 0.02, 0.05)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xhfnw"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dewec"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kne1u"]
 
-[node name="Player" type="CharacterBody3D" unique_id=318482038]
-script = ExtResource("1_kne1u")
-metadata/_custom_type_script = "uid://cavskolycx8b"
+[node name="Player" type="CharacterBody3D" unique_id=196753359]
+script = ExtResource("1_nn08x")
 
 [node name="ScreenSpaceShaders" type="MeshInstance3D" parent="." unique_id=1380722225]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -32,6 +36,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_kpjcp")
 [node name="Main" type="MeshInstance3D" parent="." unique_id=675483709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_xhfnw")
+surface_material_override/0 = SubResource("StandardMaterial3D_dewec")
 
 [node name="HeadNode" type="Node3D" parent="." unique_id=947270392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
@@ -49,3 +54,19 @@ shape = SubResource("CapsuleShape3D_kne1u")
 [node name="Pause" type="Node" parent="." unique_id=1352617494]
 process_mode = 3
 script = ExtResource("4_e80uo")
+
+[node name="ShooterNode" type="Node" parent="." unique_id=1457411486]
+script = ExtResource("5_nn08x")
+metadata/_custom_type_script = "uid://b783m6ebnmfie"
+
+[node name="Controllers" type="Node" parent="." unique_id=155877833]
+
+[node name="GravityComponent" type="Node" parent="Controllers" unique_id=346279380 node_paths=PackedStringArray("character")]
+script = ExtResource("6_52ee3")
+character = NodePath("../..")
+metadata/_custom_type_script = "uid://stgran0bamdt"
+
+[node name="PlayerMovementComponent" type="Node" parent="Controllers" unique_id=700795555 node_paths=PackedStringArray("character")]
+script = ExtResource("1_kne1u")
+character = NodePath("../..")
+metadata/_custom_type_script = "uid://cavskolycx8b"
