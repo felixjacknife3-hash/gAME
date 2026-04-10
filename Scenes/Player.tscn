@@ -63,8 +63,8 @@ script = ExtResource("5_nn08x")
 cam = NodePath("../HeadNode/Camera3D")
 character = NodePath("..")
 debound = 0.15
-recoilMulti = 80.0
-maxRecoilRange = 25.0
+recoilMulti = 120.0
+maxRecoilRange = 60.0
 metadata/_custom_type_script = "uid://b783m6ebnmfie"
 
 [node name="Controllers" type="Node" parent="." unique_id=155877833]

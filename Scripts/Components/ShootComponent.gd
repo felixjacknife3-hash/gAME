@@ -31,9 +31,11 @@ func shoot() -> void:
 		
 		if distToPos <= maxRecoilRange:
 			var recoil = -dir # opposite direction
+			recoil = recoil.normalized()
+			print(recoil.length())
 			recoil *= recoilMulti
 			recoil *= percent
-			
+			print("length: ", recoil.length(), ", ", "y: ", recoil.y, ", ", "x: ", recoil.x, ", ", "z: ", recoil.z)
 			character.velocity += recoil
 
 func ray(length: float) -> Dictionary:
