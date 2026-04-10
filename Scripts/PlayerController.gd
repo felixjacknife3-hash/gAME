@@ -1,3 +1,4 @@
+@icon("res://Icons/PlayerMovement.png")
 extends Node
 class_name PlayerMovementComponent
 

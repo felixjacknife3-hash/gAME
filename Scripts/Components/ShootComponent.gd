@@ -3,27 +3,42 @@ extends Node
 class_name ShootComponent 
 
 @export var cam: Camera3D
+@export var character: Player
+@export var debound: float = 0.1
+@export var recoilMulti: float = 2.2
+@export var maxRecoilRange: float = 80
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+var t := 0.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+func _process(delta: float) -> void:
+	t += delta
+	if Input.is_action_pressed("Shoot") and t > debound:
+		t = 0
+		shoot()
 
 func shoot() -> void:
+	var mousePos = get_viewport().get_mouse_position()
+	var dir = cam.project_ray_normal(mousePos).normalized() # THIS is your shot direction
+	
 	var query = ray(1000000)
+	
 	if !query.is_empty():
 		var pos = query.get("position")
-		var collider = query.get("collider")
-		if collider is Enemy:
-			pass
+		var distToPos = character.global_position.distance_to(pos)
+		
+		var percent = -(distToPos / maxRecoilRange) + 1 
+		
+		if distToPos <= maxRecoilRange:
+			var recoil = -dir # opposite direction
+			recoil *= recoilMulti
+			recoil *= percent
+			
+			character.velocity += recoil
 
 func ray(length: float) -> Dictionary:
 	var mousePos = get_viewport().get_mouse_position()
-	var from = cam.position
+	var from = cam.project_ray_origin(mousePos)
 	var to = from + cam.project_ray_normal(mousePos) * length
 	
 	var rayParams = PhysicsRayQueryParameters3D.create(

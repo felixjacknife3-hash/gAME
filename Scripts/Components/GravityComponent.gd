@@ -3,6 +3,7 @@ extends Node
 class_name GravityComponent
 
 @export var character: CharacterBody3D
+@export_range(0, 1, .1) var gravScale: float = 1
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -14,4 +15,5 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if !character.is_on_floor():
-		character.velocity.y -= gravity * delta
+		character.velocity.y -= (gravity * delta) * gravScale
+		

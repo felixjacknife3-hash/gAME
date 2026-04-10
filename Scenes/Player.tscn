@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dtkntpe6np4jp" path="res://Scripts/Pause.gd" id="4_e80uo"]
 [ext_resource type="Script" uid="uid://b783m6ebnmfie" path="res://Scripts/Components/ShootComponent.gd" id="5_nn08x"]
 [ext_resource type="Script" uid="uid://stgran0bamdt" path="res://Scripts/Components/GravityComponent.gd" id="6_52ee3"]
+[ext_resource type="Script" uid="uid://dqxwcvyybwrfb" path="res://Scripts/Components/JumpComponent.gd" id="8_bhhdu"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_0rwas"]
 size = Vector2(2, 2)
@@ -14,8 +15,9 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kpjcp"]
 render_priority = 0
 shader = ExtResource("1_xhfnw")
-shader_parameter/levels = 14.00000057
-shader_parameter/colorAdjustment = Vector3(0.01, 0.02, 0.05)
+shader_parameter/levels = 10.00000038
+shader_parameter/shadowAdjustment = Vector3(0.12, 0.06, 0.37)
+shader_parameter/colAdjustment = Vector3(1, 0.4, 0.5)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_xhfnw"]
 
@@ -28,7 +30,6 @@ script = ExtResource("1_nn08x")
 
 [node name="ScreenSpaceShaders" type="MeshInstance3D" parent="." unique_id=1380722225]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_0rwas")
 surface_material_override/0 = SubResource("ShaderMaterial_kpjcp")
@@ -41,6 +42,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dewec")
 [node name="HeadNode" type="Node3D" parent="." unique_id=947270392]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 script = ExtResource("2_kpjcp")
+maxXRot = 90.0
+minXRot = -90.0
 metadata/_custom_type_script = "uid://dt8uuv85o0h5n"
 
 [node name="Camera3D" type="Camera3D" parent="HeadNode" unique_id=548207774]
@@ -55,8 +58,13 @@ shape = SubResource("CapsuleShape3D_kne1u")
 process_mode = 3
 script = ExtResource("4_e80uo")
 
-[node name="ShooterNode" type="Node" parent="." unique_id=1457411486]
+[node name="ShooterNode" type="Node" parent="." unique_id=1457411486 node_paths=PackedStringArray("cam", "character")]
 script = ExtResource("5_nn08x")
+cam = NodePath("../HeadNode/Camera3D")
+character = NodePath("..")
+debound = 0.15
+recoilMulti = 80.0
+maxRecoilRange = 25.0
 metadata/_custom_type_script = "uid://b783m6ebnmfie"
 
 [node name="Controllers" type="Node" parent="." unique_id=155877833]
@@ -70,3 +78,9 @@ metadata/_custom_type_script = "uid://stgran0bamdt"
 script = ExtResource("1_kne1u")
 character = NodePath("../..")
 metadata/_custom_type_script = "uid://cavskolycx8b"
+
+[node name="JumpComponent" type="Node" parent="Controllers" unique_id=802103051 node_paths=PackedStringArray("character", "gravComponent")]
+script = ExtResource("8_bhhdu")
+character = NodePath("../..")
+gravComponent = NodePath("../GravityComponent")
+metadata/_custom_type_script = "uid://dqxwcvyybwrfb"
